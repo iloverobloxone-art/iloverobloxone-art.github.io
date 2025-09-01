@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Family-Friendly Computer Games</title>
+  <meta name="viewport" content="width=1000">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9fc; color: #23273a; margin: 0; }
+    header { background: #ffa726; padding: 25px; text-align: center; font-size: 2.3em; color: #fff; }
+    nav { background: #fff; box-shadow: 0 4px 18px #d8d8f3; padding: 25px 0; text-align: center; }
+    .game-link { font-size: 1.3em; color: #ffa726; text-decoration: none; border-bottom: 2px solid #ffa726; padding: 6px 20px; cursor:pointer; }
+    .game-link:hover, .game-link.active { color: #ff7043; border-color: #ff7043; }
+    .game-section { display: none; max-width: 1050px; margin: 40px auto; background: #23273a; border-radius: 12px; box-shadow: 0 4px 24px #000c; padding: 20px;}
+    h2 { color: #ffa726; text-align: center; margin-bottom: 18px;}
+    iframe { display: block; margin: 0 auto; border: 2px solid #ffa726; border-radius: 8px; width: 1000px; height: 600px; background: #000;}
+    @media (max-width: 1100px) {
+      iframe { width: 98vw; height: 60vw; min-height: 400px; min-width: 300px; }
+      .game-section { max-width: 99vw; }
+    }
+  </style>
+</head>
+<body>
+  <header>Welcome to Family-Friendly Computer Games!</header>
+  <nav>
+    <span class="game-link active" onclick="showGame('yohoho')">YoHoHo.io</span>
+    <span class="game-link" onclick="showGame('minecraft')">Minecraft Classic</span>
+    <span class="game-link" onclick="showGame('bloxd')">Bloxd.io</span>
+    <span class="game-link" onclick="showGame('paperio')">Paper.io</span>
+    <span class="game-link" onclick="showGame('eparkour')">eParkour.io</span>
+    <span class="game-link" onclick="showGame('papergames')">Papergames.io</span>
+  </nav>
+  <section id="yohoho" class="game-section" style="display:block;">
+    <h2>YoHoHo.io - Pirate Battle Royale</h2>
+    <iframe src="https://yohoho.io" allow="fullscreen"></iframe>
+  </section>
+  <section id="minecraft" class="game-section">
+    <h2>Official Minecraft Classic</h2>
+    <iframe src="https://classic.minecraft.net/" allow="fullscreen"></iframe>
+  </section>
+  <section id="bloxd" class="game-section">
+    <h2>Cube Parkour & Sandbox</h2>
+    <iframe src="https://bloxd.io/" allow="fullscreen"></iframe>
+  </section>
+  <section id="paperio" class="game-section">
+    <h2>Paper.io - Territory Strategy Game</h2>
+    <iframe src="https://paper-io.com" allow="fullscreen"></iframe>
+  </section>
+  <section id="eparkour" class="game-section">
+    <h2>eParkour.io - Parkour Challenge</h2>
+    <iframe src="https://eparkour.io" allow="fullscreen"></iframe>
+  </section>
+  <section id="papergames" class="game-section">
+    <h2>Papergames.io - Online Board & Puzzle</h2>
+    <iframe src="https://papergames.io/en/" allow="fullscreen"></iframe>
+  </section>
+  <script>
+    function showGame(gameId) {
+      document.querySelectorAll('.game-section').forEach(s => s.style.display = 'none');
+      document.getElementById(gameId).style.display = 'block';
+      document.querySelectorAll('.game-link').forEach(b => b.classList.remove('active'));
+      document.querySelector('.game-link[onclick="showGame(\'' + gameId + '\')"]').classList.add('active');
+    }
+  </script>
+</body>
+</html>
