@@ -2,64 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Family-Friendly Computer Games</title>
+  <title>Proxy Game Playground</title>
   <meta name="viewport" content="width=1000">
   <style>
-    body { font-family: Arial, sans-serif; background: #f9f9fc; color: #23273a; margin: 0; }
-    header { background: #ffa726; padding: 25px; text-align: center; font-size: 2.3em; color: #fff; }
-    nav { background: #fff; box-shadow: 0 4px 18px #d8d8f3; padding: 25px 0; text-align: center; }
-    .game-link { font-size: 1.3em; color: #ffa726; text-decoration: none; border-bottom: 2px solid #ffa726; padding: 6px 20px; cursor:pointer; }
+    body { font-family: Arial, sans-serif; background: #23273a; color: #fff; margin: 0;}
+    header { background: #ffa726; padding: 25px; text-align: center; font-size: 2em; color: #fff; }
+    nav { background: #fff; box-shadow: 0 4px 18px #d8d8f3; padding: 25px 0; }
+    .game-link { font-size: 1.2em; color: #ffa726; text-decoration: none; border-bottom: 2px solid #ffa726; padding: 6px 20px; cursor:pointer; }
     .game-link:hover, .game-link.active { color: #ff7043; border-color: #ff7043; }
-    .game-section { display: none; max-width: 1050px; margin: 40px auto; background: #23273a; border-radius: 12px; box-shadow: 0 4px 24px #000c; padding: 20px;}
+    #container { max-width: 1100px; margin: 32px auto; background: #23273a; border-radius: 12px; box-shadow: 0 4px 24px #000c; padding: 20px;}
+    iframe { width: 1000px; height: 600px; border: 2px solid #ffa726; border-radius: 8px; display:block; margin:auto; background: #000; }
     h2 { color: #ffa726; text-align: center; margin-bottom: 18px;}
-    iframe { display: block; margin: 0 auto; border: 2px solid #ffa726; border-radius: 8px; width: 1000px; height: 600px; background: #000;}
-    @media (max-width: 1100px) {
-      iframe { width: 98vw; height: 60vw; min-height: 400px; min-width: 300px; }
-      .game-section { max-width: 99vw; }
-    }
+    @media (max-width:1100px) { iframe {width:98vw; height:60vw; min-height:400px;} #container{max-width:99vw;} }
   </style>
 </head>
 <body>
-  <header>Welcome to Family-Friendly Computer Games!</header>
+  <header>Proxy Game Playground</header>
   <nav>
-    <span class="game-link active" onclick="showGame('yohoho')">YoHoHo.io</span>
-    <span class="game-link" onclick="showGame('minecraft')">Minecraft Classic</span>
-    <span class="game-link" onclick="showGame('bloxd')">Bloxd.io</span>
-    <span class="game-link" onclick="showGame('eparkour')">eParkour.io</span>
-    <span class="game-link" onclick="showGame('papergames')">Papergames.io</span>
+    <button class="game-link active" onclick="launch('yohoho')">YoHoHo.io</button>
+    <button class="game-link" onclick="launch('minecraft')">Minecraft Classic</button>
+    <button class="game-link" onclick="launch('bloxd')">Bloxd.io</button>
+    <button class="game-link" onclick="launch('paperio')">Paper.io</button>
+    <button class="game-link" onclick="launch('eparkour')">eParkour.io</button>
+    <button class="game-link" onclick="launch('papergames')">Papergames.io</button>
   </nav>
-  <section id="yohoho" class="game-section" style="display:block;">
-    <h2>YoHoHo.io - Pirate Battle Royale</h2>
-    <iframe src="https://yohoho.io" allow="fullscreen"></iframe>
-  </section>
-  <section id="minecraft" class="game-section">
-    <h2>Official Minecraft Classic</h2>
-    <iframe src="https://classic.minecraft.net/" allow="fullscreen"></iframe>
-  </section>
-  <section id="bloxd" class="game-section">
-    <h2>Cube Parkour & Sandbox</h2>
-    <iframe src="https://bloxd.io/" allow="fullscreen"></iframe>
-  </section>
-  <section id="paperio" class="game-section">
-    <h2>Paper.io - Territory Strategy Game</h2>
-    <iframe src="https://paper-io.com" allow="fullscreen"></iframe>
-  </section>
-  <section id="eparkour" class="game-section">
-    <h2>eParkour.io - Parkour Challenge</h2>
-    <iframe src="https://eparkour.io" allow="fullscreen"></iframe>
-  </section>
-  <section id="papergames" class="game-section">
-    <h2>Papergames.io - Online Board & Puzzle</h2>
-    <iframe src="https://papergames.io/en/" allow="fullscreen"></iframe>
-  </section>
+  <div id="container">
+    <h2 id="game-title">YoHoHo.io - Pirate Battle Royale</h2>
+    <iframe id="gameframe" src="https://the-proxy.onrender.com/proxy?url=https://yohoho.io" allow="fullscreen"></iframe>
+  </div>
   <script>
-    function showGame(gameId) {
-      document.querySelectorAll('.game-section').forEach(s => s.style.display = 'none');
-      document.getElementById(gameId).style.display = 'block';
-      document.querySelectorAll('.game-link').forEach(b => b.classList.remove('active'));
-      document.querySelector('.game-link[onclick="showGame(\'' + gameId + '\')"]').classList.add('active');
+    const games = {
+      yohoho: { url: "https://yohoho.io", title: "YoHoHo.io - Pirate Battle Royale" },
+      minecraft: { url: "https://classic.minecraft.net", title: "Minecraft Classic" },
+      bloxd: { url: "https://bloxd.io", title: "Bloxd.io - Cube Parkour & Sandbox" },
+      paperio: { url: "https://paper-io.com", title: "Paper.io - Territory Strategy Game" },
+      eparkour: { url: "https://eparkour.io", title: "eParkour.io - Parkour Challenge" },
+      papergames: { url: "https://papergames.io/en/", title: "Papergames.io - Online Board & Puzzle" }
+    };
+    function launch(game) {
+      document.getElementById("game-title").textContent = games[game].title;
+      document.getElementById("gameframe").src = "https://the-proxy.onrender.com/proxy?url=" + games[game].url;
+      document.querySelectorAll('.game-link').forEach(b=>b.classList.remove('active'));
+      event.target.classList.add('active');
     }
   </script>
 </body>
 </html>
-
