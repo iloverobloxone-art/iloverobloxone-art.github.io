@@ -2,53 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Proxy Game Playground</title>
-  <meta name="viewport" content="width=1000">
+  <title>Advanced Proxy Gateway</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: Arial, sans-serif; background: #23273a; color: #fff; margin: 0; }
-    header { background: #ffa726; padding: 25px; text-align: center; font-size: 2em; color: #fff; }
-    nav { background: #fff; box-shadow: 0 4px 18px #d8d8f3; padding: 25px 0; }
-    .game-link { font-size: 1.2em; color: #ffa726; text-decoration: none; border-bottom: 2px solid #ffa726; padding: 6px 20px; cursor:pointer; }
-    .game-link:hover, .game-link.active { color: #ff7043; border-color: #ff7043; }
-    #container { max-width: 1100px; margin: 32px auto; background: #23273a; border-radius: 12px; box-shadow: 0 4px 24px #000c; padding: 20px;}
-    iframe { width: 1000px; height: 600px; border: 2px solid #ffa726; border-radius: 8px; display:block; margin:auto; background: #000; }
-    h2 { color: #ffa726; text-align: center; margin-bottom: 18px;}
-    @media (max-width:1100px) { iframe {width:98vw; height:60vw; min-height:400px;} #container{max-width:99vw;} }
+    body { font-family: Arial, sans-serif; background: #eef4fa; margin: 0; padding: 0; }
+    .container { max-width: 500px; margin: 50px auto; background: #fff; padding: 2em; box-shadow: 0 2px 8px #ccc; border-radius: 10px; }
+    h2 { color: #2276ae; margin-bottom: .5em;}
+    input[type="text"] { width: 300px; padding: .5em; font-size: 1em; }
+    button { padding: .5em 1.2em; font-size: 1em; background: #2276ae; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #14567a; }
+    .info { font-size: 0.95em; margin-top: 1.5em; color: #333; }
+    .footer { text-align: center; margin-top: 3em; color: #666; font-size: 0.92em; }
   </style>
 </head>
 <body>
-  <header>Proxy Game Playground</header>
-  <nav>
-    <button class="game-link active" onclick="launch('yohoho')">YoHoHo.io</button>
-    <button class="game-link" onclick="launch('minecraft')">Minecraft Classic</button>
-    <button class="game-link" onclick="launch('bloxd')">Bloxd.io</button>
-    <button class="game-link" onclick="launch('paperio')">Paper.io</button>
-    <button class="game-link" onclick="launch('eparkour')">eParkour.io</button>
-    <button class="game-link" onclick="launch('papergames')">Papergames.io</button>
-  </nav>
-  <div id="container">
-    <h2 id="game-title">YoHoHo.io - Pirate Battle Royale</h2>
-    <iframe 
-      id="gameframe" 
-      src="https://the-proxy.onrender.com/proxy?url=https%3A%2F%2Fyohoho.io" 
-      allow="fullscreen"></iframe>
+  <div class="container">
+    <h2>Advanced Game Proxy Gateway</h2>
+    <form id="proxyForm" onsubmit="proxyUrl(); return false;">
+      <label for="target">Enter site URL to access:</label><br>
+      <input type="text" id="target" value="https://yohoho.io" autocomplete="off" required>
+      <button type="submit">Go!</button>
+    </form>
+    <div class="info">
+      <p>
+        Use this page to browse any website via your proxy.<br>
+        Example: <strong>https://yohoho.io</strong><br>
+        You will be redirected through: <br>
+        <code>https://the-proxy-three.vercel.app/proxy/your-site-url</code>
+      </p>
+      <ul>
+        <li>Supports direct access and iframe embedding.</li>
+        <li>Some games and sites may block proxy access.</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; 2025 Hosted using <a href="https://the-proxy-three.vercel.app/" target="_blank">Advanced Proxy</a>
+    </div>
   </div>
   <script>
-    // All URLs must be encoded for query string!
-    const proxyBase = "https://the-proxy.onrender.com/proxy?url=";
-    const games = {
-      yohoho: { url: encodeURIComponent("https://yohoho.io"), title: "YoHoHo.io - Pirate Battle Royale" },
-      minecraft: { url: encodeURIComponent("https://classic.minecraft.net"), title: "Minecraft Classic" },
-      bloxd: { url: encodeURIComponent("https://bloxd.io"), title: "Bloxd.io - Cube Parkour & Sandbox" },
-      paperio: { url: encodeURIComponent("https://paper-io.com"), title: "Paper.io - Territory Strategy Game" },
-      eparkour: { url: encodeURIComponent("https://eparkour.io"), title: "eParkour.io - Parkour Challenge" },
-      papergames: { url: encodeURIComponent("https://papergames.io/en/"), title: "Papergames.io - Online Board & Puzzle" }
-    };
-    function launch(game) {
-      document.getElementById("game-title").textContent = games[game].title;
-      document.getElementById("gameframe").src = proxyBase + games[game].url;
-      document.querySelectorAll('.game-link').forEach(b=>b.classList.remove('active'));
-      event.target.classList.add('active');
+    function proxyUrl() {
+      const input = document.getElementById("target").value.trim();
+      if (!/^https?:\/\//i.test(input)) {
+        alert("Please enter a full URL (starting with http:// or https://)");
+        return;
+      }
+      window.location.href = "https://the-proxy-three.vercel.app/proxy/" + input;
     }
   </script>
 </body>
