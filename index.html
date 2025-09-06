@@ -2,51 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Advanced Proxy Gateway</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proxy Web Gateway</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #eef4fa; margin: 0; padding: 0; }
-    .container { max-width: 500px; margin: 50px auto; background: #fff; padding: 2em; box-shadow: 0 2px 8px #ccc; border-radius: 10px; }
-    h2 { color: #2276ae; margin-bottom: .5em;}
-    input[type="text"] { width: 300px; padding: .5em; font-size: 1em; }
-    button { padding: .5em 1.2em; font-size: 1em; background: #2276ae; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
-    button:hover { background: #14567a; }
-    .info { font-size: 0.95em; margin-top: 1.5em; color: #333; }
-    .footer { text-align: center; margin-top: 3em; color: #666; font-size: 0.92em; }
+    body { font-family: Arial; background:#f7fbfc; }
+    .container { max-width:500px; margin:50px auto; background:#fff; padding:2em; border-radius:8px; box-shadow:0 2px 8px #ccd; }
+    h2 { color:#3276bd }
+    input[type="text"] { width:300px; padding:.5em; }
+    button { padding:.6em 1.2em; background:#3276bd; color:#fff; border:none; border-radius:5px; cursor:pointer; }
+    button:hover { background:#255781; }
+    .info { font-size:.9em; color:#555; margin-top:1.5em;}
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Advanced Game Proxy Gateway</h2>
-    <form id="proxyForm" onsubmit="proxyUrl(); return false;">
-      <label for="target">Enter site URL to access:</label><br>
-      <input type="text" id="target" value="https://yohoho.io" autocomplete="off" required>
+    <h2>Browse via Proxy</h2>
+    <form onsubmit="proxyRedirect(); return false;">
+      <label for="target">Enter Site URL:</label><br>
+      <input type="text" id="target" value="https://yohoho.io" required>
       <button type="submit">Go!</button>
     </form>
     <div class="info">
-      <p>
-        Use this page to browse any website via your proxy.<br>
-        Example: <strong>https://yohoho.io</strong><br>
-        You will be redirected through: <br>
-        <code>https://the-proxy-three.vercel.app/proxy/your-site-url</code>
-      </p>
+      <p>This lets you browse any site through your proxy at <strong>the-proxy-flax.vercel.app</strong>.</p>
       <ul>
-        <li>Supports direct access and iframe embedding.</li>
-        <li>Some games and sites may block proxy access.</li>
+        <li>Example input: <code>https://yohoho.io</code></li>
+        <li>Redirects to: <code>https://the-proxy-flax.vercel.app/proxy/&lt;your-site-url&gt;</code></li>
       </ul>
-    </div>
-    <div class="footer">
-      &copy; 2025 Hosted using <a href="https://the-proxy-three.vercel.app/" target="_blank">Advanced Proxy</a>
+      <p>Some games/sites may block proxy access.</p>
     </div>
   </div>
   <script>
-    function proxyUrl() {
-      const input = document.getElementById("target").value.trim();
-      if (!/^https?:\/\//i.test(input)) {
-        alert("Please enter a full URL (starting with http:// or https://)");
+    function proxyRedirect() {
+      const site = document.getElementById("target").value.trim();
+      if (!/^https?:\/\//i.test(site)) {
+        alert("Please enter a URL beginning with http:// or https://");
         return;
       }
-      window.location.href = "https://the-proxy-three.vercel.app/proxy/" + input;
+      window.location.href = "https://the-proxy-flax.vercel.app/proxy/" + site;
     }
   </script>
 </body>
